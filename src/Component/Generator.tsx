@@ -33,7 +33,8 @@ const Generate = () => {
 
         var temp = pin;   //generated pin is stored in temp variable
 
-        var pinsList: any[""];  //array 
+        var pinsList: Array<number> = [];  //array 
+        pinsList = [1111];
         pinsList.push(temp); //added generated pin in array
 
         for (let i = 1; i <= 6; i++) {
@@ -70,8 +71,42 @@ const Generate = () => {
             }
 
         }
+        console.log(pinsList)
+        var finalPin = checkConsecutive(pin);
+
+        return finalPin;
+    }
+
+    const checkConsecutive = (pin: number) => {
+
+        let myPin = pin;
+        let tempArr: Array<number> = [];
+
+        for (let i = 1000; i >= 10; i / 10) {
+            let temp = myPin / i;
+            tempArr.push(temp);
+        }
+        let temp = myPin / 1;
+        tempArr.push(temp);
+
+        for (let i = 0; i <= 4; i++) {
+            if (i !== 0) {
+                tempArr[i] = tempArr[i] % 10
+            }
+        }
+        console.log(tempArr);
+
+        if (Math.abs(tempArr[3] - tempArr[2]) && Math.abs(tempArr[2] - tempArr[1]) === 1) {
+            if (Math.abs(tempArr[2] - tempArr[1]) && Math.abs(tempArr[1] - tempArr[0]) === 1) {
+                if (tempArr[0] === tempArr[1] || tempArr[1] === tempArr[2] || tempArr[2] === tempArr[3]) {
+                    myPin = generateUnique();
+                    pin = myPin;
+                }
+            }
+        }
 
         return pin;
+
     }
 
 
