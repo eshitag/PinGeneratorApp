@@ -7,12 +7,9 @@ import '../styles/index.scss'
 
 const Saved = () => {
     const dispatch = useDispatch();
-    // const saved = useSelector(state => state.saved);
     const saved = useSelector((state: RootState) => state.saved);
     const [name, setname] = useState('')
     dispatch(addName(name));
-    console.log(name)
-    console.log(saved)
 
     if (saved.length === 0) {
         return (
